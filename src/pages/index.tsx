@@ -1,4 +1,3 @@
-import Image from 'next/image';
 import { Nunito } from 'next/font/google';
 import Header from '@/components/Header';
 import { NextSeo } from 'next-seo';
@@ -9,21 +8,21 @@ export default function Home() {
   return (
     <main className={`${nunito.className}`}>
       <NextSeo
-        title='WebCoderSpeed - Latest Tech News, Code, and AI Articles'
-        description='Stay up-to-date with the latest technology news, coding tutorials, and articles on artificial intelligence (AI) at WebCoderSpeed.'
+        title='webcoderspeed - Latest Tech News, Code, and AI Articles'
+        description='Stay up-to-date with the latest technology news, coding tutorials, and articles on artificial intelligence (AI) at webcoderspeed.'
         canonical='https://webcoderspeed.com/'
         openGraph={{
-          title: 'WebCoderSpeed - Latest Tech News, Code, and AI Articles',
+          title: 'webcoderspeed - Latest Tech News, Code, and AI Articles',
           description:
-            'Stay up-to-date with the latest technology news, coding tutorials, and articles on artificial intelligence (AI) at WebCoderSpeed.',
-          url: '/public/logo.png',
+            'Stay up-to-date with the latest technology news, coding tutorials, and articles on artificial intelligence (AI) at webcoderspeed.',
+          url: '/logo.png',
           images: [
             {
-              url: '/public/logo.png',
-              alt: 'WebCoderSpeed - Latest Tech News, Code, and AI Articles',
+              url: '/logo.png',
+              alt: 'webcoderspeed - Latest Tech News, Code, and AI Articles',
             },
           ],
-          site_name: 'WebCoderSpeed',
+          site_name: 'webcoderspeed',
         }}
         robotsProps={{
           nosnippet: true,
