@@ -1,8 +1,35 @@
 import { Nunito } from 'next/font/google';
 import Header from '@/components/Header';
 import { NextSeo } from 'next-seo';
+import PostCard from '@/components/PostCard';
 
 const nunito = Nunito({ subsets: ['latin'] });
+
+const fakePosts = [
+  {
+    id: 1,
+    title: 'Lorem Ipsum',
+    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+    author: {
+      name: 'John Doe',
+      avatar: 'https://via.placeholder.com/150',
+    },
+    createdAt: 'April 20, 2023',
+    image: 'https://via.placeholder.com/300',
+  },
+  {
+    id: 2,
+    title: 'Dolor Sit Amet',
+    description: 'Duis eu tortor vel lectus convallis rhoncus.',
+    author: {
+      name: 'Jane Smith',
+      avatar: 'https://via.placeholder.com/150',
+    },
+    createdAt: 'April 22, 2023',
+    image: 'https://via.placeholder.com/300',
+  },
+  // Add more fake posts objects as needed
+];
 
 export default function Home() {
   return (
@@ -35,6 +62,15 @@ export default function Home() {
         }}
       />
       <Header />
+
+      <div className='mx-auto max-w-5xl my-6 grid space-y-4'>
+        {fakePosts?.map((post) => (
+          <PostCard
+            key={post.id}
+            {...post}
+          />
+        ))}
+      </div>
     </main>
   );
 }
