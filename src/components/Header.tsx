@@ -72,6 +72,7 @@ const Header = () => {
           <button
             onClick={toggleMenu}
             className={'text-gray-800 outline-none'}
+            name='header-menu'
           >
             {isOpen ? (
               <AiOutlineClose className='h-6 w-6' />
