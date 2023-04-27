@@ -7,5 +7,5 @@ export interface IPost {
   };
   createdAt: string;
   image: string;
+  categories: string[];
 }
-

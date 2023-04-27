@@ -1,49 +1,72 @@
 import { IPost } from '@/interfaces/post';
 import Image from 'next/image';
 import React from 'react';
+import dayjs from 'dayjs';
 
-const PostCard = ({ title, description, author, createdAt, image }: IPost) => {
+const PostCard = ({
+  title,
+  description,
+  author,
+  createdAt,
+  image,
+  categories,
+}: IPost) => {
   return (
-    <div className='flex flex-col sm:max-h-80 sm:flex-row bg-white shadow-sm rounded-sm overflow-hidden'>
-      {/* Image on the left side */}
-      <div className='relative w-full sm:w-1/2'>
-        <Image
-          className='object-cover w-full h-full'
-          src={image}
-          alt={title}
-          width={600}
-          height={400}
-        />
-        <div className='absolute inset-0 bg-black opacity-40 hover:opacity-20 transition duration-200'></div>
-      </div>
-      <div className='flex flex-col sm:w-1/2 p-4'>
-        {/* Title */}
-        <h2 className='text-3xl font-bold mb-2 text-gray-900'>{title}</h2>
-        {/* Short description */}
-        <p className='text-gray-700 mb-4'>{description}</p>
-        {/* Author details */}
-        <div className='flex items-center mb-4'>
-          <Image
-            className='w-12 h-12 rounded-full mr-2'
-            src={author.avatar}
-            alt={author.name}
-            width={48}
-            height={48}
-          />
-          <div>
-            <p className='text-gray-900 font-bold'>{author.name}</p>
-            <p className='text-gray-600'>{createdAt}</p>
-          </div>
+    <figure className='rounded-lg shadow-sm md:flex relative max-w-5xl my-8 border-2'>
+      <span className='absolute -top-8 -right-2 md:-left-8 md:-top-8 bg-violet-500 p-4 w-20 rounded-lg flex items-center justify-center flex-col text-white'>
+        <p>{dayjs(createdAt).format('D')}</p>
+        <p className='uppercase font-bold text-xl'>
+          {dayjs(createdAt).format('MMM')}
+        </p>
+      </span>
+      <Image
+        className='mx-auto rounded-t-lg md:rounded-none md:rounded-l-lg object-cover max-h-96 w-full'
+        src={image}
+        alt={title}
+        loading='lazy'
+        width={800}
+        height={800}
+      />
+      <div className='p-4 space-y-4'>
+        <h3 className='text-gray-800 font-bold text-lg'>{title}</h3>
+        <blockquote>
+          <p className='text-md font-medium text-gray-600'>
+            {description?.substring(0, 265) + '...'}
+          </p>
+        </blockquote>
+        <div className='flex space-x-2'>
+          {categories?.map((category) => (
+            <button
+              key={category}
+              className={`rounded-md bg-violet-600 px-2 py-1 text-white uppercase text-xs`}
+            >
+              {category}
+            </button>
+          ))}
         </div>
-        {/* Read more button */}
-        <a
-          href='#'
-          className='bg-blue-500 text-white py-2 px-4 rounded-sm inline-block text-center hover:bg-blue-600 transition duration-200'
-        >
-          Read More
-        </a>
+        <figcaption className='font-medium flex justify-between'>
+          <div className='flex items-center gap-1'>
+            <Image
+              className='rounded-lg object-cover h-10 w-10'
+              src={author.avatar}
+              alt={author.name}
+              loading='lazy'
+              width={800}
+              height={60}
+            />
+            <div>
+              <p className='text-base text-gray-600'>{author.name}</p>
+              <p className='text-sm text-gray-800'>
+                {dayjs(createdAt).format('MMMM D, YYYY')}
+              </p>
+            </div>
+          </div>
+          <button className='rounded-lg bg-gray-100 px-2 py-1 text-sm text-gray-800'>
+            Read more
+          </button>
+        </figcaption>
       </div>
-    </div>
+    </figure>
   );
 };
 
